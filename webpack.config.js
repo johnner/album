@@ -1,32 +1,29 @@
+/* eslint-disable semi */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development',
-  entry: {
-    app: './src/js/index.js'
-  },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      title: 'Output Management',
-      hash: true
-    })
+  entry: [
+    'react-hot-loader/patch',
+    './src/js/index.js'
   ],
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
         test: /\.scss$/,
-        use: [
-          {loader: "style-loader"}, // creates style nodes from JS strings
-          {loader: "css-loader"},   // translates CSS into CommonJS
-          {loader: "sass-loader"}   // compiles Sass to CSS
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
@@ -37,5 +34,20 @@ module.exports = {
         use: ['file-loader']
       }
     ]
-  }
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  },
+  plugins: [
+    // new CleanWebpackPlugin(['dist']),
+    // new HtmlWebpackPlugin({
+    //   title: 'Output Management',
+    //   hash: true
+    // })
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };

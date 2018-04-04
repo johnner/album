@@ -2,5 +2,5 @@
 
 # Dev install
 - `npm i`
-- `npm run build`
-- check `index.html` in the `dist` dir
+- `npm run start`
+- check browser at `http://localhost:8080/`

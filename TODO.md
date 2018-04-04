@@ -1,0 +1,1 @@
+-  add index.html template for webpack 

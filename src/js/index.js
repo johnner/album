@@ -1,10 +1,12 @@
-import _ from 'lodash';
-import '../styles/main.scss';
-import printMe from './print.js';
+/* eslint-disable semi */
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-function component() {
-  let element = document.createElement('div');
-  return element;
-}
+const title = 'Album Viewer';
 
-document.body.appendChild(component());
+ReactDOM.render(
+  <div>{title}</div>,
+  document.getElementById('app')
+);
+
+module.hot.accept();
