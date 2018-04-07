@@ -43,11 +43,11 @@ module.exports = {
     hot: true
   },
   plugins: [
-    // new CleanWebpackPlugin(['dist']),
-    // new HtmlWebpackPlugin({
-    //   title: 'Output Management',
-    //   hash: true
-    // })
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      hash: true,
+      template: 'src/index.html'
+    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 };
